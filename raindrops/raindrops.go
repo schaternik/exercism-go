@@ -1,24 +1,23 @@
 package raindrops
 
 import (
-	"sort"
 	"strconv"
 )
-
-var convertConfig = map[int]string{
-	3: "Pling",
-	5: "Plang",
-	7: "Plong",
-}
 
 // Convert returns string depending on input's factor
 func Convert(input int) string {
 	var result string
 
-	for _, factor := range factors() {
-		if input%factor == 0 {
-			result += convertConfig[factor]
-		}
+	if input%3 == 0 {
+		result += "Pling"
+	}
+
+	if input%5 == 0 {
+		result += "Plang"
+	}
+
+	if input%7 == 0 {
+		result += "Plong"
 	}
 
 	if result == "" {
@@ -26,15 +25,4 @@ func Convert(input int) string {
 	}
 
 	return result
-}
-
-func factors() []int {
-	var keys []int
-
-	for k := range convertConfig {
-		keys = append(keys, k)
-	}
-	sort.Ints(keys)
-
-	return keys
 }
