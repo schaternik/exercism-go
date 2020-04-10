@@ -4,10 +4,13 @@ import "strings"
 
 // IsIsogram check is string contains only uniq chars or not
 func IsIsogram(input string) bool {
-	var checkedLettes = make(map[rune]int)
-	var str = strings.ReplaceAll(strings.ReplaceAll(strings.ToLower(input), "-", ""), " ", "")
+	checkedLettes := map[rune]int{}
+	lowercaseStr := strings.ToLower(input)
 
-	for _, char := range str {
+	for _, char := range lowercaseStr {
+		if char == ' ' || char == '-' {
+			continue
+		}
 		if val, ok := checkedLettes[char]; ok && val >= 1 {
 			return false
 		}
